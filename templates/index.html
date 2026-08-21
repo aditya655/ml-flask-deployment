@@ -8,19 +8,22 @@
   <h1> Email Spam Classifier</h1>
   
   <div>
-    <form>
+    <form method="POST">
       <textarea
         rows="12"
         cols="60"
         name="content"
-        placeholder="Type or paste your email here">       
-      </textarea>
+        placeholder="Type or paste your email here">{{text}}</textarea>
       <div>
-        <button>
+        <button type="submit">
           Submit
         </button>
       </div>
     </form>
+  </div>
+
+  <div>
+    <p> {{ text}} </p>
   </div>
 </body>
 
