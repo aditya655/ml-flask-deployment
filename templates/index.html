@@ -23,7 +23,13 @@
   </div>
 
   <div>
-    <p> Prediction: {{prediction}} </p>
+    {% if prediction %}
+       {% if prediction == 1 %}
+         <h2> Spam</h2>
+       {% else %}
+         <h2> Not Spam</h2>
+       {% endif %}
+    {% endif %}
   </div>
 </body>
 
