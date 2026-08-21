@@ -18,6 +18,8 @@ def predict():
 
   prediction = clf.predict(tokenized_email)
 
+  prediction = 1 if prediction[0] == 1 else -1
+
 
   return render_template("index.html",prediction=prediction[0], email=email)
 
