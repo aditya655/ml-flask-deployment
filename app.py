@@ -6,9 +6,12 @@ app = Flask(__name__)
 cv = pickle.load(open("model/cv.pkl", "rb"))
 clf = pickle.load(open("model/clf.pkl", "rb"))
 
+@app.route("/")
+def home():
+  return render_template("index.html")
 
 @app.route("/predict", methods=["POST"])
-def home():
+def predict():
   email = request.form.get("content")
 
   tokenized_email = cv.transform([email])
