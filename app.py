@@ -7,13 +7,16 @@ cv = pickle.load(open("model/cv.pkl", "rb"))
 clf = pickle.load(open("model/clf.pkl", "rb"))
 
 
-@app.route("/", methods=["GET","POST"])
+@app.route("/predict", methods=["POST"])
 def home():
-  text = ""
+  email = request.form.get("content")
 
-  if request.method == "POST":
-    text = request.form.get("content")
-  return render_template("index.html",text=text)
+  tokenized_email = cv.transform([email])
+
+  prediction = clf.predict(tokenized_email)
+
+
+  return render_template("index.html",prediction=prediction[0], email=email)
 
 if __name__ == "__main__":
   app.run(debug=True)
