@@ -21,7 +21,7 @@ def predict():
   prediction = 1 if prediction[0] == 1 else -1
 
 
-  return render_template("index.html",prediction=prediction[0], email=email)
+  return render_template("index.html",prediction=prediction, email=email)
 
 if __name__ == "__main__":
   app.run(debug=True)
