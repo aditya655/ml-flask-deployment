@@ -28,6 +28,11 @@ def predict_api():
 
   email = data["content"]
 
+  if not email.strip():
+    return jsonify({
+      "error": "content can't be empty"
+    }), 400
+
   prediction =  model_predict(email)
 
   return jsonify({
