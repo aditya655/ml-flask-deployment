@@ -28,6 +28,11 @@ def predict_api():
 
   email = data["content"]
 
+  if not isinstance(email,str):
+    return jsonify({
+      "error": "content must be a string"
+    }),400
+
   if not email.strip():
     return jsonify({
       "error": "content can't be empty"
