@@ -8,10 +8,7 @@ def model_predict(email):
 
   if not email:
     return None
-
   
-  
-
   tokenized_email = cv.transform([email])
 
   prediction = clf.predict(tokenized_email)
