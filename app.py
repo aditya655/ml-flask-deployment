@@ -23,7 +23,7 @@ def predict_api():
 
   if not data or "content" not in data:
     return jsonify({
-      "error:" "content is required"
+      "error": "content is required"
     }), 400
 
   email = data["content"]
