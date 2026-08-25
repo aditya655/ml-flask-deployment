@@ -21,6 +21,11 @@ def predict():
 def predict_api():
   data = request.get_json()
 
+  if not data or "content" not in data:
+    return jsonify({
+      "error:" "content is required"
+    }), 400
+
   email = data["content"]
 
   prediction =  model_predict(email)
