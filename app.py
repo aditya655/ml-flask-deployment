@@ -1,10 +1,9 @@
 from flask import Flask, render_template, request, jsonify
-import pickle
+from utils import model_predict
 
 app = Flask(__name__)
 
-cv = pickle.load(open("model/cv.pkl", "rb"))
-clf = pickle.load(open("model/clf.pkl", "rb"))
+
 
 @app.route("/")
 def home():
@@ -14,12 +13,7 @@ def home():
 def predict():
   email = request.form.get("content")
 
-  tokenized_email = cv.transform([email])
-
-  prediction = clf.predict(tokenized_email)
-
-  prediction = 1 if prediction[0] == 1 else -1
-
+  prediction = model_predict(email)
 
   return render_template("index.html",prediction=prediction, email=email)
 
@@ -29,11 +23,7 @@ def predict_api():
 
   email = data["content"]
 
-  tokenized_email = cv.transform([email])
-
-  prediction = clf.predict(tokenized_email)
-
-  prediction = 1 if prediction[0] == 1 else -1
+  prediction =  model_predict(email)
 
   return jsonify({
     "prediction": prediction,
